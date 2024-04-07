@@ -58,7 +58,6 @@ window.ipc.on(
     let id: number;
 
     if (info.innerHTML) element.innerHTML = info.innerHTML;
-    document.body.appendChild(element);
 
     elements[reservedId - 1] = element;
     id = reservedId;
@@ -75,11 +74,10 @@ window.ipc.on("setProperty", (_, info: { id: number; k: string; v: any }) => {
 
   if (info.k === "parent") {
     if (info.v === "null") {
-      (element as HTMLElement).style.visibility = "hidden";
+      (element as HTMLElement).parentElement?.removeChild(element);
     } else {
       let parent = elements[Number(info.v) - 1];
       parent.appendChild(element);
-      (element as HTMLElement).style.visibility = "visible";
     }
   } else if (element) {
     (element as any)[info.k] = info.v;
