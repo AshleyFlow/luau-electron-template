@@ -3,7 +3,7 @@ this template uses the [electron-lune-bindings](https://www.npmjs.com/package/el
 
 ---
 # Instructions
-Install all the dependencies with a package manager like pnpm or yarn (I used yarn), Make sure to have Lune installed on your system ([Installation Guide](https://lune-org.github.io/docs/getting-started/1-installation))
+Install all the dependencies with a package manager like pnpm or yarn (I used yarn), also make sure to have Lune installed on your system ([Lune Installation Guide](https://lune-org.github.io/docs/getting-started/1-installation))
 
 ## Examples
 ```shell
@@ -15,7 +15,7 @@ $ pnpm install
 
 ---
 ## Scripts
-Use the `dev` script to run the app in dev mod, In dev mode app will reload when a luau file changes in the project
+Use the `dev` script to run the app in dev mod, in dev mode app will reload when a luau file changes in the project
 
 Use the `make` script to make a windows installer
 
@@ -29,7 +29,7 @@ $ pnpm run dev
 
 ---
 ## Not using Windows?
-For other platforms, first you might want to change what executable file `main.ts` uses to run luau code in production (by default it looks for a .exe file)
+In dev mode the app should work fine on other platforms, but for other platforms you might need to change what executable file `main.ts` uses to run luau code in production (by default it looks for a .exe file)
 
 the executable file gets created automatically when you run the `dev` or `make` script (these scripts run build.luau using lune to build the executable)
 
