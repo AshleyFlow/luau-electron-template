@@ -28,7 +28,7 @@
   "author": "ashleyflow",
   "license": "MIT",
   "dependencies": {
-    "electron-lune-bindings": "^1.0.1"
+    "electron-lune-bindings": "^1.0.3"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.24.4",

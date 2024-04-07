@@ -11,7 +11,6 @@ function createWindow() {
   win = new BrowserWindow({
     width: 800,
     height: 600,
-    icon: "https://luau-lang.org/assets/images/luau-88.png",
     webPreferences: {
       preload: path.join(__dirname, "/dist/src-js/preload.js"),
     },
@@ -26,8 +25,6 @@ app.whenReady().then(() => {
   createWindow();
 
   if (!win) return;
-
-  // config.mainScript.replace(".luau", ".exe")
 
   bindWindowToLune(
     win,

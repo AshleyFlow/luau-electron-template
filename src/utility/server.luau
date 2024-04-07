@@ -20,6 +20,9 @@ end
 local serve_handle: net.ServeHandle
 local module = {
 	listeners = {} :: { [string]: { Listener } },
+	kill = function()
+		-- ipc will take over this function
+	end,
 }
 
 serve_handle = net.serve(config.lunePort, function(req)
@@ -33,7 +36,8 @@ serve_handle = net.serve(config.lunePort, function(req)
 				end
 			end
 		elseif req.path == "/kill" then
-			task.defer(serve_handle.stop)
+			serve_handle.stop()
+			module.kill()
 		end
 	end
 
