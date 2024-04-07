@@ -1,1 +1,1 @@
-require("../examples/click_counter")
+require("@examples/click_counter")
