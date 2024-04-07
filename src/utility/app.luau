@@ -1,4 +1,3 @@
-local _server = require("server")
 local ipc = require("ipc")
 local promise = require("promise")
 local task = require("@lune/task")
@@ -24,7 +23,7 @@ app.reserved_id = 1
 app.reserved_event_id = 1
 
 local function is_table_a_html_element(element: any): boolean
-	if element.id and element.set_event and element.set_prop and element.set_props then
+	if element.is_element then
 		return true
 	end
 
@@ -106,6 +105,10 @@ local function create_html_element_from_id(id: number): HTMLElement
 
 	local mt = {
 		__index = function(_, i)
+			if i == "is_element" then
+				return true
+			end
+
 			if rawget(t, i) then
 				return rawget(t, i)
 			else

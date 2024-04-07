@@ -1,4 +1,4 @@
-local app = require("../../../src/@utility/app")
+local app = require("@utility/app")
 local document = app.document
 
 type Props = {

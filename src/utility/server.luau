@@ -1,13 +1,10 @@
 local task = require("@lune/task")
 local net = require("@lune/net")
-local ipc = require("ipc")
 local fs = require("@lune/fs")
 
-local extracted_string = string.match(debug.info(1, "sln"), '"([^"]+)"')
-assert(extracted_string, "failed to get path of current running script")
+export type Listener = (value: any) -> ()
 
-local config_path = extracted_string:sub(0, #extracted_string - #"server.luau\\" - #"@utility") .. "config.json"
-local config = net.jsonDecode(fs.readFile(config_path)) :: {
+local config = net.jsonDecode(fs.readFile("src/config.json")) :: {
 	lunePort: number,
 	mainScript: string,
 }
@@ -21,14 +18,18 @@ local function ascii_to_str(asciiTable: { number })
 end
 
 local serve_handle: net.ServeHandle
+local module = {
+	listeners = {} :: { [string]: { Listener } },
+}
+
 serve_handle = net.serve(config.lunePort, function(req)
 	if req.method == "POST" then
 		if req.path == "/channel" then
-			local listeners = ipc.listeners[ascii_to_str(req.headers.channel :: any)]
+			local listeners = module.listeners[ascii_to_str(req.headers.channel :: any)]
 
 			if listeners then
-				for _, listener in listeners do
-					listener(net.jsonDecode(ascii_to_str(req.headers.value :: any)))
+				for _, callback in listeners do
+					callback(net.jsonDecode(ascii_to_str(req.headers.value :: any)))
 				end
 			end
 		elseif req.path == "/kill" then
@@ -39,4 +40,4 @@ serve_handle = net.serve(config.lunePort, function(req)
 	return {}
 end)
 
-return {}
+return module
