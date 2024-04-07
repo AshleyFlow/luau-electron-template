@@ -1,0 +1,5 @@
+{
+    "$schema": "../config-schema.json",
+    "lunePort": 6548,
+    "mainScript": "src/init.luau"
+}

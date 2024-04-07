@@ -1,0 +1,38 @@
+{
+  "name": "lune-electron",
+  "description": "electron app with lune",
+  "version": "1.0.0",
+  "main": "./dist/main.js",
+  "module": "./dist/main.mjs",
+  "types": "./dist/main.d.ts",
+  "scripts": {
+    "build-lune-executable": "lune run build.luau",
+    "start": "electron .",
+    "dev": "tsc && npm run start"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "lune-electron"
+          }
+        }
+      ]
+    }
+  },
+  "author": "ashleyflow",
+  "license": "MIT",
+  "dependencies": {
+    "electron-lune-bindings": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.24.4",
+    "@types/electron": "^1.6.10",
+    "@types/node": "^20.12.5",
+    "electron": "^29.2.0",
+    "typescript": "^5.4.4"
+  }
+}
