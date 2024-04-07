@@ -7,7 +7,9 @@
   "types": "./dist/main.d.ts",
   "scripts": {
     "build-lune-executable": "lune run build.luau",
-    "start": "electron .",
+    "package": "tsc && npm run build-lune-executable && electron-forge package",
+    "make": "electron-forge make",
+    "start": "npm run build-lune-executable && electron .",
     "dev": "tsc && npm run start"
   },
   "config": {
@@ -26,10 +28,12 @@
   "author": "ashleyflow",
   "license": "MIT",
   "dependencies": {
-    "electron-lune-bindings": "^1.0.0"
+    "electron-lune-bindings": "^1.0.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.24.4",
+    "@electron-forge/cli": "^7.3.1",
+    "@electron-forge/maker-squirrel": "^7.3.1",
     "@types/electron": "^1.6.10",
     "@types/node": "^20.12.5",
     "electron": "^29.2.0",

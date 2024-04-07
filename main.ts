@@ -2,6 +2,7 @@ import { app, BrowserWindow } from "electron";
 import * as path from "node:path";
 import { bindWindowToLune, watchForChanges } from "electron-lune-bindings";
 import * as config from "./src/config.json";
+import * as child_process from "child_process";
 
 let win: BrowserWindow | undefined = undefined;
 __dirname = path.resolve(__dirname, "../"); // from ./dist to project directory
@@ -26,10 +27,20 @@ app.whenReady().then(() => {
 
   if (!win) return;
 
+  // config.mainScript.replace(".luau", ".exe")
+
   bindWindowToLune(
     win,
-    path.resolve(__dirname, config.mainScript),
-    path.resolve(__dirname, config.mainScript.replace(".luau", ".exe")),
+    () =>
+      // dev
+      child_process.spawn("lune", ["run", config.mainScript], {
+        cwd: __dirname,
+      }),
+    () =>
+      // production
+      child_process.spawn(config.mainScript.replace(".luau", ".exe"), {
+        cwd: __dirname,
+      }),
     config.lunePort
   );
 
