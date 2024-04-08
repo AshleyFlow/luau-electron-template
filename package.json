@@ -6,7 +6,7 @@
   "module": "./dist/main.mjs",
   "types": "./dist/main.d.ts",
   "scripts": {
-    "build-lune-executable": "lune run build.luau",
+    "build-lune-executable": "node ./dist/build.js",
     "package": "tsc && npm run build-lune-executable && electron-forge package",
     "make": "electron-forge make",
     "start": "npm run build-lune-executable && electron .",

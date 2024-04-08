@@ -35,7 +35,7 @@ app.whenReady().then(() => {
       }),
     () =>
       // production
-      child_process.spawn(config.mainScript.replace(".luau", ".exe"), {
+      child_process.spawn(config.executable, {
         cwd: __dirname,
       }),
     config.lunePort
