@@ -10,8 +10,8 @@
     "build-lune-executable": "node ./dist/build.js",
     "package": "tsc && npm run build-lune-executable && electron-forge package",
     "make": "electron-forge make",
-    "start": "npm run build-lune-executable && electron .",
-    "dev": "tsc && npm run start"
+    "start": "tsc && npm run build-lune-executable && electron .",
+    "dev": "npm run start"
   },
   "config": {
     "forge": {

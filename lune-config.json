@@ -2,6 +2,6 @@
 	"$schema": "config-schema.json",
 	"lunePort": 6548,
 	"mainScript": "src/init.luau",
-	"cwd": "src/",
-	"executable": "..\\executables\\build.exe"
+	"cwd": "./executables/",
+	"executable": "build.exe"
 }

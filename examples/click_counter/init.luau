@@ -15,14 +15,14 @@ body:set_props({
 
 local clicks = 0
 
-local _, update_counter = require("components/counter")({
+local _, update_counter = require("./components/counter")({
 	parent = body,
 	get_count = function()
 		return `Clicks: {clicks}`
 	end,
 })
 
-require("components/button")({
+require("./components/button")({
 	parent = body,
 	on_click_callback = function()
 		clicks += 1
