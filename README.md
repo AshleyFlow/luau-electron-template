@@ -35,4 +35,4 @@ Add a [maker](https://www.electronforge.io/config/makers) to package.json dev de
 # Creating packages
 Create an empty project with yarn or npm, then add [npmluau](https://github.com/seaofvoices/npmluau/) and [luau-electron-bindings](https://github.com/HighFlowey/luau-electron-bindings) to package.json's dependencies
 
-Using `require("@pkg/luau-electron-bindings").app` you can now create elements in the your new project, to see the elements you have to add your new project as a dependency to your lune-electron project ofcourse.
+Using `require("@pkg/luau-electron-bindings").app` you can now create elements in your new project, to see the elements you have to add your new project as a dependency to your lune-electron project ofcourse.
