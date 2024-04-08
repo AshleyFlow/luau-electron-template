@@ -26,9 +26,6 @@ $ yarn run dev
 ```shell
 $ pnpm run dev
 ```
----
-# Issues
-If you plan on making a custom folder and requiring modules from it, please add it as an alias to the .luaurc file, or else the `require` function would error in production.
 
 ---
 # Not using Windows?

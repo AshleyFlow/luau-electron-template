@@ -5,7 +5,6 @@
   "luau-lsp.types.definitionFiles": [],
   "luau-lsp.require.directoryAliases": {
     "@lune/": "~/.lune/.typedefs/0.8.0/",
-    "@utility/": "./bindings",
-    "@examples/": "./examples"
+    "@utility/": "./bindings"
   }
 }

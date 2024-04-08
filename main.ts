@@ -30,13 +30,17 @@ app.whenReady().then(() => {
     win,
     () =>
       // dev
-      child_process.spawn("lune", ["run", config.mainScript], {
-        cwd: __dirname,
-      }),
+      child_process.spawn(
+        "lune",
+        ["run", path.resolve(config.mainScript), String(config.lunePort)],
+        {
+          cwd: path.resolve(__dirname),
+        }
+      ),
     () =>
       // production
-      child_process.spawn(config.executable, {
-        cwd: __dirname,
+      child_process.spawn(config.executable, [String(config.lunePort)], {
+        cwd: path.resolve(__dirname, config.cwd),
       }),
     config.lunePort
   );

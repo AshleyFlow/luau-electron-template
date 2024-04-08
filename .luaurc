@@ -1,7 +1,6 @@
 {
     "languageMode": "strict",
     "aliases": {
-        "utility": "./bindings",
-        "examples": "./examples"
+        "utility": "./bindings"
     }
 }

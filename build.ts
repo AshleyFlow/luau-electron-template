@@ -4,8 +4,9 @@ import * as child_process from "child_process";
 import { readFileSync, unlinkSync, writeFile } from "fs";
 
 const luneConfigPath = "./lune-config.json";
-const regex = /Writing standalone binary to (.+)/;
-const extensionRegex = /(\..+)/;
+const fullRegex = /Writing standalone binary to (.+)/;
+const extensionRegex = /\..+/;
+const directoryRegex = /.*\//;
 
 __dirname = path.resolve(__dirname, "../");
 
@@ -18,16 +19,19 @@ let buildSample = child_process.spawnSync(
 );
 
 let extension = "";
+let cwd = "";
 
 buildSample.output.forEach((chunk) => {
   if (!chunk) return;
   let stdout = chunk.toString();
-  let output = stdout.match(regex);
+  let fullRegexResults = stdout.match(fullRegex);
 
-  if (output) {
-    let sampleExecutable = output[1];
-    let extensionRegexResults = output[1].match(extensionRegex);
-    extension = extensionRegexResults ? extensionRegexResults[1] : "";
+  if (fullRegexResults) {
+    let sampleExecutable = fullRegexResults[1];
+    let directoryRegexResults = fullRegexResults[1].match(directoryRegex);
+    let extensionRegexResults = fullRegexResults[1].match(extensionRegex);
+    extension = extensionRegexResults ? extensionRegexResults[0] : "";
+    cwd = directoryRegexResults ? directoryRegexResults[0] : "src";
 
     unlinkSync(sampleExecutable);
   }
@@ -43,7 +47,7 @@ let build = child_process.spawn(
 
 build.stdout.on("data", (chunk: Buffer) => {
   let stdout = chunk.toString();
-  let output = stdout.match(regex);
+  let output = stdout.match(fullRegex);
 
   if (output) {
     let executable = output[1];
@@ -53,7 +57,8 @@ build.stdout.on("data", (chunk: Buffer) => {
       readFileSync(luneConfigPath, "utf8")
     );
 
-    newConfig.executable = executable;
+    newConfig.executable = path.relative(cwd, executable);
+    newConfig.cwd = cwd;
 
     writeFile(
       luneConfigPath,

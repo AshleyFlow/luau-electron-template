@@ -1,12 +1,7 @@
 local net = require("@lune/net")
-local fs = require("@lune/fs")
+local process = require("@lune/process")
 
 export type Listener = (value: any) -> ()
-
-local config = net.jsonDecode(fs.readFile("lune-config.json")) :: {
-	lunePort: number,
-	mainScript: string,
-}
 
 local function ascii_to_str(asciiTable: { number })
 	local str = ""
@@ -24,7 +19,10 @@ local module = {
 	end,
 }
 
-serve_handle = net.serve(config.lunePort, function(req)
+local port = tonumber(process.args[1])
+assert(typeof(port) == "number", "port must be a number")
+
+serve_handle = net.serve(port, function(req)
 	if req.method == "POST" then
 		if req.path == "/channel" then
 			local listeners = module.listeners[ascii_to_str(req.headers.channel :: any)]
