@@ -1,0 +1,10 @@
+/dist
+/bindings
+/executables
+/out
+/public
+/src-js
+/types
+tsconfig.json
+lune-config.json
+*.ts

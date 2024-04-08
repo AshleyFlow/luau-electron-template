@@ -26,14 +26,7 @@ $ yarn run dev
 ```shell
 $ pnpm run dev
 ```
----
-# Issues
-If you plan on making a custom folder and requiring modules from it, please add it as an alias to the .luaurc file, or else the `require` function would error in production.
 
 ---
 # Not using Windows?
-In dev mode the app should work fine on other platforms, but for the packaged version you might need to change what executable file `main.ts` uses to run luau code in production (by default it looks for a .exe file)
-
-the executable file gets created automatically when you run the `dev` or `make` script (these scripts run build.luau using lune to build the executable)
-
-then add a [maker](https://www.electronforge.io/config/makers) dependency for any platform you want to the project
+add a [maker](https://www.electronforge.io/config/makers) to package.json dev dependencies for the specific platform you want build with
