@@ -1,7 +1,7 @@
 {
   "name": "lune-electron",
   "description": "electron app with lune",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "./dist/main.js",
   "module": "./dist/main.mjs",
   "types": "./dist/main.d.ts",
