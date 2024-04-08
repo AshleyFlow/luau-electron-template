@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from "electron";
 import * as path from "node:path";
 import { bindWindowToLune, watchForChanges } from "electron-lune-bindings";
-import * as config from "./src/config.json";
+import * as config from "./lune-config.json";
 import * as child_process from "child_process";
 
 let win: BrowserWindow | undefined = undefined;

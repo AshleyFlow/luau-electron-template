@@ -1,8 +1,9 @@
 import path from "path";
-import * as config from "./src/config.json";
+import * as config from "./lune-config.json";
 import * as child_process from "child_process";
 import { readFileSync, writeFile } from "fs";
 
+const luneConfigPath = "./lune-config.json";
 let regex = /Writing standalone binary to (.+)/;
 __dirname = path.resolve(__dirname, "../");
 
@@ -19,13 +20,13 @@ build.stdout.on("data", (chunk: Buffer) => {
     console.log("Built executable file for lune: " + executable);
 
     let newConfig: typeof config = JSON.parse(
-      readFileSync("./src/config.json", "utf8")
+      readFileSync(luneConfigPath, "utf8")
     );
 
     newConfig.executable = executable;
 
     writeFile(
-      "./src/config.json",
+      luneConfigPath,
       JSON.stringify(newConfig, null, "\t"),
       "utf8",
       (err) => {

@@ -1,10 +1,9 @@
-local task = require("@lune/task")
 local net = require("@lune/net")
 local fs = require("@lune/fs")
 
 export type Listener = (value: any) -> ()
 
-local config = net.jsonDecode(fs.readFile("src/config.json")) :: {
+local config = net.jsonDecode(fs.readFile("lune-config.json")) :: {
 	lunePort: number,
 	mainScript: string,
 }
