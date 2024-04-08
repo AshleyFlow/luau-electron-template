@@ -15,7 +15,24 @@
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "ignore": [
+          "/.vscode/",
+          "/src/",
+          "/src-js/",
+          "/types/",
+          "/bindings/",
+          "/public/renderer.ts",
+          "tsconfig.json",
+          "main.ts",
+          "build.ts",
+          "config-schema.json",
+          "README",
+          ".npmignore",
+          ".luaurc",
+          ".gitignore"
+        ]
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
