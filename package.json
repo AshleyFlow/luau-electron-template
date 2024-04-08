@@ -1,7 +1,7 @@
 {
   "name": "lune-electron",
   "description": "electron app with lune",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "./dist/main.js",
   "module": "./dist/main.mjs",
   "types": "./dist/main.d.ts",
@@ -31,7 +31,7 @@
   "dependencies": {
     "electron-lune-bindings": "^1.0.3",
     "npmluau": "^0.1.1",
-    "luau-electron-bindings": "luau-electron-bindings@1.0.0"
+    "luau-electron-bindings": "luau-electron-bindings@1.0.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.24.4",

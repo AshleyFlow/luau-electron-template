@@ -29,4 +29,10 @@ $ pnpm run dev
 
 ---
 # Not using Windows?
-add a [maker](https://www.electronforge.io/config/makers) to package.json dev dependencies for the specific platform you want build with
+Add a [maker](https://www.electronforge.io/config/makers) to package.json dev dependencies for the specific platform you want build with
+
+---
+# Creating packages
+Create an empty project with yarn or npm, then add [npmluau](https://github.com/seaofvoices/npmluau/) and [luau-electron-bindings](https://github.com/HighFlowey/luau-electron-bindings) to package.json's dependencies
+
+Using `require("@pkg/luau-electron-bindings").app` you can now create elements in the your new project, to see the elements you have to add your new project as a dependency to your lune-electron project ofcourse.
