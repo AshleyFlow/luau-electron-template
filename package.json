@@ -6,6 +6,7 @@
   "module": "./dist/main.mjs",
   "types": "./dist/main.d.ts",
   "scripts": {
+    "prepare": "npmluau",
     "build-lune-executable": "node ./dist/build.js",
     "package": "tsc && npm run build-lune-executable && electron-forge package",
     "make": "electron-forge make",
@@ -28,7 +29,9 @@
   "author": "ashleyflow",
   "license": "MIT",
   "dependencies": {
-    "electron-lune-bindings": "^1.0.3"
+    "electron-lune-bindings": "^1.0.3",
+    "npmluau": "^0.1.1",
+    "luau-electron-bindings": "luau-electron-bindings@1.0.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.24.4",
