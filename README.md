@@ -2,6 +2,10 @@
 this template uses the [electron-lune-bindings](https://www.npmjs.com/package/electron-lune-bindings) package to connect lune to electron
 
 ---
+# CREATE-LUAU-APP
+project generator: https://github.com/HighFlowey/create-luau-app
+
+---
 # Setup
 Install all the dependencies with a package manager like pnpm or yarn (I used yarn), also make sure to have Lune installed on your system ([Lune Installation Guide](https://lune-org.github.io/docs/getting-started/1-installation))
 
