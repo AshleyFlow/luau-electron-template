@@ -21,6 +21,7 @@ let bundleProcess = child_process.spawnSync(
 
 console.log("stdout", bundleProcess.stdout.toString());
 console.log("stderr:", bundleProcess.stderr.toString());
+console.log("Bundled luau files");
 
 let buildSample = child_process.spawnSync(
   "lune",
