@@ -1,47 +1,21 @@
 {
   "name": "lune-electron",
   "description": "electron app with lune",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "./dist/main.js",
   "module": "./dist/main.mjs",
   "types": "./dist/main.d.ts",
   "scripts": {
     "prepare": "npmluau",
     "build-lune-executable": "node ./dist/build.js",
-    "package": "tsc && npm run build-lune-executable && electron-forge package",
-    "make": "electron-forge make",
-    "start": "tsc && npm run build-lune-executable && electron .",
+    "prepackage": "tsc && npmluau && npm run build-lune-executable",
+    "package": "npm run prepackage && electron-forge package",
+    "start": "npm run prepackage && electron .",
+    "make": "npm run package && electron-forge make",
     "dev": "npm run start"
   },
   "config": {
-    "forge": {
-      "packagerConfig": {
-        "ignore": [
-          "/.vscode/",
-          "/src/",
-          "/src-js/",
-          "/types/",
-          "/bindings/",
-          "/public/renderer.ts",
-          "tsconfig.json",
-          "main.ts",
-          "build.ts",
-          "config-schema.json",
-          "README",
-          ".npmignore",
-          ".luaurc",
-          ".gitignore"
-        ]
-      },
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "lune-electron"
-          }
-        }
-      ]
-    }
+    "forge": "forge.config.js"
   },
   "author": "ashleyflow",
   "license": "MIT",
