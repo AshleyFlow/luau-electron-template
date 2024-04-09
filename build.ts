@@ -5,14 +5,27 @@ import { readFileSync, unlinkSync, writeFile } from "fs";
 
 const luneConfigPath = "./lune-config.json";
 const fullRegex = /Writing standalone binary to (.+)/;
-const extensionRegex = /\..+/;
 const directoryRegex = /.*\//;
 
 __dirname = path.resolve(__dirname, "../");
 
+console.log("Bundling luau files");
+
+let bundleProcess = child_process.spawnSync(
+  "darklua",
+  ["process", config.mainScript, "./executables/bundled.luau"],
+  {
+    cwd: __dirname,
+  }
+);
+
+console.log("stdout", bundleProcess.stdout.toString());
+console.log("stderr:", bundleProcess.stderr.toString());
+console.log("Bundled luau files");
+
 let buildSample = child_process.spawnSync(
   "lune",
-  ["build", config.mainScript],
+  ["build", "./executables/bundled.luau"],
   {
     cwd: __dirname,
   }
@@ -29,8 +42,7 @@ buildSample.output.forEach((chunk) => {
   if (fullRegexResults) {
     let sampleExecutable = fullRegexResults[1];
     let directoryRegexResults = fullRegexResults[1].match(directoryRegex);
-    let extensionRegexResults = fullRegexResults[1].match(extensionRegex);
-    extension = extensionRegexResults ? extensionRegexResults[0] : "";
+    extension = path.extname(fullRegexResults[1]);
     cwd = directoryRegexResults ? directoryRegexResults[0] : "src";
 
     unlinkSync(sampleExecutable);
@@ -39,7 +51,12 @@ buildSample.output.forEach((chunk) => {
 
 let build = child_process.spawn(
   "lune",
-  ["build", config.mainScript, "-o", "./executables/build" + extension],
+  [
+    "build",
+    "./executables/bundled.luau",
+    "-o",
+    "./executables/build" + extension,
+  ],
   {
     cwd: __dirname,
   }

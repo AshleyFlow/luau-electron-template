@@ -1,0 +1,13 @@
+{
+  "bundle": {
+    "require_mode": {
+      "name": "path",
+      "module_folder_name": "init",
+      "sources": {
+        "@pkg": "./node_modules/.luau-aliases",
+        "@utility": "./bindings"
+      }
+    },
+    "excludes": ["@lune/**", "@pkg/**"]
+  }
+}
